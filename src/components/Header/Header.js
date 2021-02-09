@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 
 class Header extends React.Component {
   render() {
@@ -10,14 +10,11 @@ class Header extends React.Component {
           <div className="collection-sort">
             <label>Filter by:</label>
             <select>
-              <option value="/">All Products</option>
-              <option value="/">2016</option>
-              <option value="/">product</option>
-              <option value="/">Products</option>
-              <option value="/">layers</option>
-              <option value="/">Obermeyer</option>
-              <option value="/">Roxy</option>
-              <option value="/">womens</option>
+              <option value={Children}>All Products</option>
+              <option value="/">{this.props.categories[0]}</option>
+              <option value="/">{this.props.categories[1]}</option>
+              <option value="/">{this.props.categories[2]}</option>
+              <option value="/">{this.props.categories[3]}</option>
             </select>
           </div>
 

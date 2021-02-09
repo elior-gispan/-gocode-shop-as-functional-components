@@ -2,22 +2,12 @@ import React from "react";
 import Product from "../Product/Product";
 import SaleCountDown from "../SaleCountDown/SaleCountDown";
 
-const OnSaleIdProducts = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
-
 class Products extends React.Component {
   state = {
-    products: [],
-    onSaleIdProducts: OnSaleIdProducts,
+    onSaleIdProducts: this.props.onSaleIdProducts,
   };
-
-  async componentDidMount() {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const products = await res.json();
-    this.setState({ products });
-  }
-
   render() {
-    const ProductsList = this.state.products.map(
+    const ProductsList = this.props.children.map(
       ({ title, price, image, id }) => (
         <Product
           title={title}
