@@ -12,28 +12,13 @@ class App extends React.Component {
     category: "All Products",
   };
 
-  categoryUpdate = (category) =>
-    this.setState((state) => {
-      return {
-        products: state.products,
-        onSaleIdProducts: state.OnSaleIdProducts,
-        categories: state.categories,
-        category,
-      };
-    });
+  categoryUpdate = (category) => this.setState({ category });
 
   async componentDidMount() {
     console.log("App-DidMount");
     const Res = await fetch("https://fakestoreapi.com/products");
     const Products = await Res.json();
-    this.setState((state) => {
-      return {
-        products: Products,
-        onSaleIdProducts: state.OnSaleIdProducts,
-        categories: state.categories,
-        category: state.category,
-      };
-    });
+    this.setState({ products: Products });
 
     const GroupBy = (xs, key) =>
       xs.reduce((rv, x) => {
@@ -42,14 +27,7 @@ class App extends React.Component {
       }, {});
 
     const Categories = Object.keys(GroupBy(Products, "category"));
-    this.setState((state) => {
-      return {
-        products: state.products,
-        onSaleIdProducts: state.OnSaleIdProducts,
-        categories: Categories,
-        category: state.category,
-      };
-    });
+    this.setState({ categories: Categories });
   }
 
   render() {
