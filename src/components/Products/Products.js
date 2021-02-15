@@ -7,24 +7,33 @@ class Products extends React.Component {
     onSaleIdProducts: this.props.onSaleIdProducts,
   };
   render() {
-    const ProductsList = this.props.children.map(
-      ({ title, price, image, id }) => (
-        <Product
-          title={title}
-          price={price}
-          imgSrc={image}
-          key={id}
-          productClassName={
-            this.state.onSaleIdProducts.includes(id) ? "onSale" : "product-card"
-          }
-        />
-      )
-    );
+    console.log("Products rendering");
+    console.log("state of Products: ", this.state);
+    const Products =
+      this.props.category === "All Products"
+        ? this.props.children
+        : this.props.children.filter(
+            (product) => product.category === this.props.category
+          );
+    console.log("Products are: ", Products);
+
+    const ProductsList = Products.map(({ title, price, image, id }) => (
+      <Product
+        title={title}
+        price={price}
+        imgSrc={image}
+        key={id}
+        productClassName={
+          this.state.onSaleIdProducts.includes(id) ? "onSale" : "product-card"
+        }
+      />
+    ));
     return (
       <div>
         <SaleCountDown
           saleOver={() => {
             this.setState({ onSaleIdProducts: [] });
+            console.log("Sale is Over!!!!!!!!!!!!!!!!!");
           }}
         />
         <section className="products">{ProductsList}</section>

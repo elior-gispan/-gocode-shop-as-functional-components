@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Minutes = 0;
-const Seconds = 5;
+const Seconds = 10;
 
 class SaleCountDown extends React.Component {
   state = {
@@ -11,6 +11,7 @@ class SaleCountDown extends React.Component {
   };
 
   componentDidMount() {
+    console.log("SaleCountDown-DidMount");
     const intervalID = setInterval(() => {
       const { minutes, seconds } = this.state;
       let sec = seconds;
@@ -31,6 +32,8 @@ class SaleCountDown extends React.Component {
   }
 
   render() {
+    console.log("SaleCountDown rendering");
+    // console.log("state of SaleCountDown: ", this.state);
     return (
       <div className="sale-component">
         {this.state.minutes === 0 && this.state.seconds === 0

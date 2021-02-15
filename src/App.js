@@ -9,12 +9,31 @@ class App extends React.Component {
     products: [],
     onSaleIdProducts: OnSaleIdProducts,
     categories: [],
+    category: "All Products",
   };
 
+  categoryUpdate = (category) =>
+    this.setState((state) => {
+      return {
+        products: state.products,
+        onSaleIdProducts: state.OnSaleIdProducts,
+        categories: state.categories,
+        category,
+      };
+    });
+
   async componentDidMount() {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const products = await res.json();
-    this.setState({ products });
+    console.log("App-DidMount");
+    const Res = await fetch("https://fakestoreapi.com/products");
+    const Products = await Res.json();
+    this.setState((state) => {
+      return {
+        products: Products,
+        onSaleIdProducts: state.OnSaleIdProducts,
+        categories: state.categories,
+        category: state.category,
+      };
+    });
 
     const GroupBy = (xs, key) =>
       xs.reduce((rv, x) => {
@@ -22,15 +41,32 @@ class App extends React.Component {
         return rv;
       }, {});
 
-    const Categories = Object.keys(GroupBy(products, "category"));
-    this.setState({ categories: Categories });
+    const Categories = Object.keys(GroupBy(Products, "category"));
+    this.setState((state) => {
+      return {
+        products: state.products,
+        onSaleIdProducts: state.OnSaleIdProducts,
+        categories: Categories,
+        category: state.category,
+      };
+    });
   }
 
   render() {
+    console.log("App rendering");
+    console.log("state of App: ", this.state);
     return (
       <div>
-        <Header categories={this.state.categories} />
-        <Products onSaleIdProducts={this.state.onSaleIdProducts}>
+        <Header
+          categories={this.state.categories}
+          categoryUpdate={this.categoryUpdate}
+        >
+          {this.state.products}
+        </Header>
+        <Products
+          onSaleIdProducts={this.state.onSaleIdProducts}
+          category={this.state.category}
+        >
           {this.state.products}
         </Products>
       </div>

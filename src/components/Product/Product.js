@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 class Product extends React.Component {
   render() {
+    console.log("Product rendering");
     const { imgSrc, title, price, productClassName } = this.props;
 
     return (
