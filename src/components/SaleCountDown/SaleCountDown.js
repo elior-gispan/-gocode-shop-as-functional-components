@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 const Minutes = 0;
 const Seconds = 10;
 
-class SaleCountDown extends React.Component {
-  state = {
-    minutes: Minutes,
-    seconds: Seconds,
-  };
+const SaleCountDown = (props) => {
+  const [minutes, setMinutes] = useState(Minutes);
+  const [seconds, setSeconds] = useState(Seconds);
 
-  componentDidMount() {
+  useEffect(() => {
     const intervalID = setInterval(() => {
-      const { minutes, seconds } = this.state;
       let sec = seconds;
       let min = minutes;
       if (sec > 0) {
@@ -22,26 +19,23 @@ class SaleCountDown extends React.Component {
           min--;
           sec = 59;
         } else {
-          this.props.saleOver();
+          props.saleOver();
           clearInterval(intervalID);
         }
       }
-      this.setState({ minutes: min, seconds: sec });
+      setMinutes(min);
+      setSeconds(sec);
     }, 1000);
-  }
+  }, [props]);
 
-  render() {
-    return (
-      <div className="sale-component">
-        {this.state.minutes === 0 && this.state.seconds === 0
-          ? "The SALE is over"
-          : `${this.state.minutes}:${("00" + this.state.seconds).slice(
-              -2
-            )} lefts to the SALE...`}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="sale-component">
+      {minutes === 0 && seconds === 0
+        ? "The SALE is over"
+        : `${minutes}:${("00" + seconds).slice(-2)} lefts to the SALE...`}
+    </div>
+  );
+};
 
 SaleCountDown.propTypes = {
   saleOver: PropTypes.func,
