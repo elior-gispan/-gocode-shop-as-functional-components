@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 const Minutes = 0;
@@ -8,8 +8,10 @@ const SaleCountDown = (props) => {
   const [minutes, setMinutes] = useState(Minutes);
   const [seconds, setSeconds] = useState(Seconds);
 
+  const intervalRef = useRef();
+
   useEffect(() => {
-    const intervalID = setInterval(() => {
+    const intervalId = setInterval(() => {
       let sec = seconds;
       let min = minutes;
       if (sec > 0) {
@@ -20,12 +22,16 @@ const SaleCountDown = (props) => {
           sec = 59;
         } else {
           props.saleOver();
-          clearInterval(intervalID);
+          clearInterval(intervalRef.current);
         }
       }
       setMinutes(min);
       setSeconds(sec);
     }, 1000);
+    intervalRef.current = intervalId;
+    return () => {
+      clearInterval(intervalRef.current);
+    };
   }, [minutes, props, seconds]);
 
   return (
