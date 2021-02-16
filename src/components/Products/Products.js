@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Product from "../Product/Product";
 import SaleCountDown from "../SaleCountDown/SaleCountDown";
 
@@ -41,5 +42,11 @@ class Products extends React.Component {
     );
   }
 }
+
+Products.propTypes = {
+  onSaleIdProducts: PropTypes.array,
+  category: PropTypes.string,
+  children: PropTypes.array,
+};
 
 export default Products;

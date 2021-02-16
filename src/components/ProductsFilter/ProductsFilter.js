@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class ProductsFilter extends React.Component {
-  state = { value: "All Products" };
+  //   state = { value: "All Products" };
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-    // this.props.categoryUpdate(this.state.value);
-    this.props.categoryUpdate(event.target.value);
-  };
+  //   category = (event) => {
+  //     // this.setState({ value: event.target.value });
+  //     // this.props.categoryUpdate(this.state.value);
+  //     this.props.categoryUpdate(event.target.value);
+  //   };
 
   //   handleChange = (event) => {
   //     const Products = this.props.children;
@@ -23,19 +24,18 @@ class ProductsFilter extends React.Component {
 
   render() {
     console.log("ProductsFilter rendering");
-    console.log("state of ProductsFilter: ", this.state);
-    const OptionsList = this.props.categories.map((category) => {
-      return (
-        <option key={category} value={category}>
-          {category}
-        </option>
-      );
-    });
+    const { categories, categoryUpdate } = this.props;
+    // console.log("state of ProductsFilter: ", this.state);
+    const OptionsList = categories.map((category) => (
+      <option key={category} value={category}>
+        {category}
+      </option>
+    ));
 
     return (
       <div className="collection-sort">
         <label>Filter by:</label>
-        <select value={this.state.value} onChange={this.handleChange}>
+        <select onChange={(event) => categoryUpdate(event.target.value)}>
           <option value="All Products">All Products</option>
           {OptionsList}
         </select>
@@ -43,5 +43,10 @@ class ProductsFilter extends React.Component {
     );
   }
 }
+
+ProductsFilter.propTypes = {
+  categories: PropTypes.array,
+  categoryUpdate: PropTypes.func,
+};
 
 export default ProductsFilter;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ProductsFilter from "../ProductsFilter/ProductsFilter";
 import ProductsSort from "../ProductsSort/ProductsSort";
 
@@ -13,14 +14,17 @@ class Header extends React.Component {
           <ProductsFilter
             categories={this.props.categories}
             categoryUpdate={this.props.categoryUpdate}
-          >
-            {this.props.children}
-          </ProductsFilter>
+          />
           <ProductsSort />
         </div>
       </nav>
     );
   }
 }
+
+Header.propTypes = {
+  categories: PropTypes.array,
+  categoryUpdate: PropTypes.func,
+};
 
 export default Header;

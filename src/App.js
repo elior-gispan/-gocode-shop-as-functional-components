@@ -38,9 +38,7 @@ class App extends React.Component {
         <Header
           categories={this.state.categories}
           categoryUpdate={this.categoryUpdate}
-        >
-          {this.state.products}
-        </Header>
+        />
         <Products
           onSaleIdProducts={this.state.onSaleIdProducts}
           category={this.state.category}
