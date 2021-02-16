@@ -26,7 +26,7 @@ const SaleCountDown = (props) => {
       setMinutes(min);
       setSeconds(sec);
     }, 1000);
-  }, [props]);
+  }, [minutes, props, seconds]);
 
   return (
     <div className="sale-component">

@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Product from "../Product/Product";
 import SaleCountDown from "../SaleCountDown/SaleCountDown";
 
 const Products = (props) => {
-  const { category, children } = props;
-
-  const [onSaleIdProducts, setOnSaleIdProducts] = useState(
-    props.onSaleIdProducts
-  );
+  const { category, children, onSaleIdProducts, setOnSaleIdProducts } = props;
 
   const Products =
     category === "All Products"
@@ -28,11 +24,7 @@ const Products = (props) => {
   ));
   return (
     <div>
-      <SaleCountDown
-        saleOver={() => {
-          setOnSaleIdProducts([]);
-        }}
-      />
+      <SaleCountDown saleOver={() => setOnSaleIdProducts([])} />
       <section className="products">{ProductsList}</section>
     </div>
   );

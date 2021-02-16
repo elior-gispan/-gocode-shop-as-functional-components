@@ -3,14 +3,12 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
 
-const OnSaleIdProducts = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+const OnSaleId = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [onSaleIdProducts, setOnSaleIdProducts] = useState(OnSaleIdProducts);
+  const [onSaleIdProducts, setOnSaleIdProducts] = useState(OnSaleId);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("All Products");
-
-  const categoryUpdate = (category) => setCategory(category);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,8 +31,12 @@ const App = () => {
 
   return (
     <div>
-      <Header categories={categories} categoryUpdate={categoryUpdate} />
-      <Products onSaleIdProducts={onSaleIdProducts} category={category}>
+      <Header categories={categories} categoryUpdate={setCategory} />
+      <Products
+        onSaleIdProducts={onSaleIdProducts}
+        setOnSaleIdProducts={setOnSaleIdProducts}
+        category={category}
+      >
         {products}
       </Products>
     </div>
