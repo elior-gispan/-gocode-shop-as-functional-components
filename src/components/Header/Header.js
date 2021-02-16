@@ -5,8 +5,6 @@ import ProductsSort from "../ProductsSort/ProductsSort";
 
 class Header extends React.Component {
   render() {
-    console.log("Header rendering");
-    console.log("state of Header: ", this.state);
     return (
       <nav className="product-filter">
         <h1>Products</h1>

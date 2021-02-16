@@ -12,10 +12,11 @@ class App extends React.Component {
     category: "All Products",
   };
 
+  //   onSaleIdProducts = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+
   categoryUpdate = (category) => this.setState({ category });
 
   async componentDidMount() {
-    console.log("App-DidMount");
     const Res = await fetch("https://fakestoreapi.com/products");
     const Products = await Res.json();
     this.setState({ products: Products });
@@ -31,8 +32,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("App rendering");
-    console.log("state of App: ", this.state);
     return (
       <div>
         <Header

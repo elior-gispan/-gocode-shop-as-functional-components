@@ -8,15 +8,12 @@ class Products extends React.Component {
     onSaleIdProducts: this.props.onSaleIdProducts,
   };
   render() {
-    console.log("Products rendering");
-    console.log("state of Products: ", this.state);
     const Products =
       this.props.category === "All Products"
         ? this.props.children
         : this.props.children.filter(
             (product) => product.category === this.props.category
           );
-    console.log("Products are: ", Products);
 
     const ProductsList = Products.map(({ title, price, image, id }) => (
       <Product
@@ -34,7 +31,6 @@ class Products extends React.Component {
         <SaleCountDown
           saleOver={() => {
             this.setState({ onSaleIdProducts: [] });
-            console.log("Sale is Over!!!!!!!!!!!!!!!!!");
           }}
         />
         <section className="products">{ProductsList}</section>

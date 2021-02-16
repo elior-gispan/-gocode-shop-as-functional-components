@@ -2,7 +2,6 @@ import React from "react";
 
 class ProductsSort extends React.Component {
   render() {
-    console.log("ProductsSort rendering");
     return (
       <div className="collection-sort">
         <label>Sort by:</label>

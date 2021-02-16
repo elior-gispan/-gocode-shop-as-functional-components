@@ -23,7 +23,6 @@ class ProductsFilter extends React.Component {
   //   };
 
   render() {
-    console.log("ProductsFilter rendering");
     const { categories, categoryUpdate } = this.props;
     // console.log("state of ProductsFilter: ", this.state);
     const OptionsList = categories.map((category) => (
