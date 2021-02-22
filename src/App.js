@@ -1,45 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
-import Products from "./components/Products/Products";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import About from "./pages/About/About";
+import Home from "./pages/Home/Home";
+import ProductPage from "./pages/ProductPage/ProductPage";
 
-const OnSaleId = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
 const App = () => {
-  const [products, setProducts] = useState([]);
-  const [onSaleIdProducts, setOnSaleIdProducts] = useState(OnSaleId);
-  const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState("All Products");
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const Res = await fetch("https://fakestoreapi.com/products");
-      const Products = await Res.json();
-      setProducts(Products);
-    };
-
-    fetchProducts();
-
-    const GroupBy = (xs, key) =>
-      xs.reduce((rv, x) => {
-        rv[x[key]] = true || [];
-        return rv;
-      }, {});
-
-    const Categories = Object.keys(GroupBy(products, "category"));
-    setCategories(Categories);
-  }, [products]);
-
   return (
-    <div>
-      <Header categories={categories} categoryUpdate={setCategory} />
-      <Products
-        onSaleIdProducts={onSaleIdProducts}
-        setOnSaleIdProducts={setOnSaleIdProducts}
-        category={category}
-      >
-        {products}
-      </Products>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/products/:productId" component={ProductPage}></Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 

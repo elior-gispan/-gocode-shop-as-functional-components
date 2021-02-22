@@ -1,38 +1,36 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const Minutes = 0;
-const Seconds = 10;
+const [MINUTES, SECONDS] = [0, 10];
 
-const SaleCountDown = (props) => {
-  const [minutes, setMinutes] = useState(Minutes);
-  const [seconds, setSeconds] = useState(Seconds);
-
-  const intervalRef = useRef();
+const SaleCountDown = ({ saleOver }) => {
+  const [minutes, setMinutes] = useState(MINUTES);
+  const [seconds, setSeconds] = useState(SECONDS);
 
   useEffect(() => {
+    let sec;
+    let min;
     const intervalId = setInterval(() => {
-      let sec = seconds;
-      let min = minutes;
+      console.log("min: ", min);
+      console.log("minutes: ", minutes);
+      console.log("sec: ", sec);
+      console.log("seconds: ", seconds);
+      console.log("IntervalId: ", intervalId);
+      sec = seconds;
+      min = minutes;
       if (sec > 0) {
         sec--;
+      } else if (min > 0) {
+        min--;
+        sec = 59;
       } else {
-        if (min > 0) {
-          min--;
-          sec = 59;
-        } else {
-          props.saleOver();
-          clearInterval(intervalRef.current);
-        }
+        saleOver();
+        clearInterval(intervalId);
       }
       setMinutes(min);
       setSeconds(sec);
     }, 1000);
-    intervalRef.current = intervalId;
-    return () => {
-      clearInterval(intervalRef.current);
-    };
-  }, [minutes, props, seconds]);
+  }, [minutes, saleOver, seconds]);
 
   return (
     <div className="sale-component">

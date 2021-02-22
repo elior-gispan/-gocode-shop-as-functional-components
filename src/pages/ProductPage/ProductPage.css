@@ -1,0 +1,17 @@
+.description-title {
+    text-decoration-line: underline;
+    font-size: 40px;
+}
+
+.product-page-image img {
+    display: flex;
+    margin: auto;
+    width: 100px;
+}
+
+.product-description {
+    color: crimson;
+    font-size: 20px;
+    line-height: 150%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

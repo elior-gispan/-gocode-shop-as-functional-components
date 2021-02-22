@@ -1,0 +1,13 @@
+div.about {
+    display: flex;
+    flex-direction: column;
+}
+
+div.about p {
+    margin: 40px;
+    margin-top: 100px;
+    font-size: 40px;
+    line-height: 180%;
+    font-weight: bold;
+    color: cadetblue;
+}

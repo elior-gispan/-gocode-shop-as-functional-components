@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Product = (props) => {
-  const { imgSrc, title, price, productClassName } = props;
+  const { imgSrc, title, price, id, productClassName } = props;
 
   return (
     <div className={productClassName}>
       <div className="product-image">
-        <img alt="No_image_found" src={imgSrc} />
+        <Link to={`/products/${id}`}>
+          <img alt="No_image_found" src={imgSrc} />
+        </Link>
       </div>
       <div className="product-info">
         <h5>{title}</h5>

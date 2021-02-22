@@ -110,6 +110,12 @@ h6.salePrice {
     font-size: 28px;
 }
 
+Link {
+    display: flex;
+    width: 10px;
+    size: 10px;
+}
+
 /* Product Layout */
 
 .product-filter {
@@ -161,6 +167,12 @@ label {
     flex: 1 16%;
     background-color: #fff;
     box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.product-page .product-image img {
+    display: flex;
+    margin: auto;
+    width: 100px;
 }
 
 .product-image img {
