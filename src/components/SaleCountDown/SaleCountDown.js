@@ -11,11 +11,11 @@ const SaleCountDown = ({ saleOver }) => {
     let sec;
     let min;
     const intervalId = setInterval(() => {
-      console.log("min: ", min);
-      console.log("minutes: ", minutes);
-      console.log("sec: ", sec);
-      console.log("seconds: ", seconds);
-      console.log("IntervalId: ", intervalId);
+      //   console.log("min: ", min);
+      //   console.log("minutes: ", minutes);
+      //   console.log("sec: ", sec);
+      //   console.log("seconds: ", seconds);
+      //   console.log("IntervalId: ", intervalId);
       sec = seconds;
       min = minutes;
       if (sec > 0) {

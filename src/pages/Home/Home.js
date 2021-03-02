@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Products from "../../components/Products/Products";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const ON_SALE_ID = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
 const Home = () => {
@@ -27,8 +28,9 @@ const Home = () => {
     const Categories = Object.keys(GroupBy(products, "category"));
     setCategories(Categories);
   }, [products]);
+  const theme = useContext(ThemeContext);
   return (
-    <div>
+    <div style={{ background: theme.background, color: theme.foreground }}>
       <Header categories={categories} categoryUpdate={setCategory} />
       <Products
         onSaleIdProducts={onSaleIdProducts}
