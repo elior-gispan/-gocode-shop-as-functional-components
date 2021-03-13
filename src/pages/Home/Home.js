@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Products from "../../components/Products/Products";
-import { ThemeContext } from "../../contexts/ThemeContext";
+import ThemeContext from "../../contexts/ThemeContext";
 
 const ON_SALE_ID = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
 const Home = () => {
@@ -12,7 +12,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://fakestoreapi.com/products");
+      const res = await fetch("http://localhost:8000/products");
+      //   const res = await fetch("https://fakestoreapi.com/products");
       const products = await res.json();
       setProducts(products);
     };

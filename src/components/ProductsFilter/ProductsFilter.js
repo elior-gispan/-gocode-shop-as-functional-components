@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Slider } from "antd";
+import { Slider } from "antd";
+// import "antd/dist/antd.css";
 
 const ProductsFilter = (props) => {
   const { categories, categoryUpdate } = props;
@@ -10,6 +11,14 @@ const ProductsFilter = (props) => {
     </option>
   ));
 
+  const onChange = (value) => {
+    console.log("onChange: ", value);
+  };
+
+  const onAfterChange = (value) => {
+    console.log("onAfterChange: ", value);
+  };
+
   //   const filterByPrice = (e =
 
   //   }
@@ -18,6 +27,13 @@ const ProductsFilter = (props) => {
     <div className="collection-sort">
       {/* <label>Filter by Price:</label>
       <Slider range defaultValue={[0, 100]} /> */}
+      <Slider
+        range={300}
+        step={1}
+        defaultValue={[20, 50]}
+        onChange={onChange}
+        onAfterChange={onAfterChange}
+      />
       <label>Filter by:</label>
       <select onChange={(event) => categoryUpdate(event.target.value)}>
         <option value="All Products">All Products</option>
@@ -86,4 +102,40 @@ export default ProductsFilter;
 //     />
 //   </>,
 //   mountNode,
+// );
+
+// import { Slider } from 'antd';
+
+// function onChange(value) {
+//   console.log('onChange: ', value);
+// }
+
+// const onChange = (value) => {
+//   console.log("onChange: ", value);
+// };
+
+// const onAfterChange = (value) => {
+//   console.log("onAfterChange: ", value);
+// };
+
+// function onAfterChange(value) {
+//   console.log('onAfterChange: ', value);
+// }
+
+// ReactDOM.render(
+//   <>
+//     <Slider
+//       defaultValue={30}
+//       onChange={onChange}
+//       onAfterChange={onAfterChange}
+//     />
+//     <Slider
+//       range
+//       step={10}
+//       defaultValue={[20, 50]}
+//       onChange={onChange}
+//       onAfterChange={onAfterChange}
+//     />
+//   </>,
+//   mountNode
 // );

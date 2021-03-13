@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 // import Product from "../../components/Product/Product";
 import "./ProductPage.css";
 
 const ProductPage = ({ match }) => {
   const [product, setProduct] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
+    if (match.params.productId > 20) {
+      history.push("");
+    }
     const fetchProduct = async () => {
       const res = await fetch(
-        `https://fakestoreapi.com/products/${match.params.productId}`
+        `http://localhost:8000/products/${match.params.productId}`
       );
       const json = await res.json();
       console.log(json);
@@ -16,7 +22,7 @@ const ProductPage = ({ match }) => {
     };
 
     fetchProduct();
-  }, [match.params.productId]);
+  }, [history, match.params.productId]);
 
   const { title, price, image, description } = product;
   return (

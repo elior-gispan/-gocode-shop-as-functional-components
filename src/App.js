@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import About from "./pages/About/About";
 import Home from "./pages/Home/Home";
 import ProductPage from "./pages/ProductPage/ProductPage";
-import { ThemeContext, themes } from "./contexts/ThemeContext";
+import ThemeContext, { themes } from "./contexts/ThemeContext";
 
 const App = () => {
   const [currentTheme, setCurrentTheme] = useState(themes.light);
